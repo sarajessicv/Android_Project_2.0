@@ -1,7 +1,9 @@
 package com.example.android_project_20;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,13 +11,25 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 
 public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    private TextView Date;
+    private TextView date;
     private Button btPickDate;
     private Button next;
     private TextView start_hint;
@@ -27,6 +41,7 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
     private TextView start_Time;
     private TextView end_Time;
     private Boolean is24HView;
+    Context context;
 
     @Override
     // https://www.geeksforgeeks.org/datepickerdialog-in-android/ DATEPICKERDIALOG CODE
@@ -34,9 +49,10 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.get_info );
+        context = getApplicationContext();
 
         is24HView =  true;
-        Date = (TextView) findViewById(R.id.workDate);
+        date = (TextView) findViewById(R.id.workDate);
         btPickDate = (Button) findViewById(R.id.btPickDate);
         next = (Button) findViewById(R.id.button_next);
         start_hint = (TextView) findViewById(R.id.start_time_hint);
@@ -64,14 +80,18 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
         this.timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                start_Time.setText(hourOfDay + ":" + minute);
+                String minutes = String.format("%02d", minute);
+                String hours = String.format("%02d", hourOfDay);
+                start_Time.setText(hours + ":" + minutes);
             }
         });
 
         this.timePicker2.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                end_Time.setText(hourOfDay + ":" + minute);
+                String minutes = String.format("%02d", minute);
+                String hours = String.format("%02d", hourOfDay);
+                end_Time.setText(hours + ":" + minutes);
             }
         });
     }
@@ -82,13 +102,31 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
         mCalender.set(Calendar.YEAR, year);
         mCalender.set(Calendar.MONTH, month);
         mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
-        Date.setText(selectedDate);
+        String selectedDate = DateFormat.getDateInstance().format(mCalender.getTime());
+        date.setText(selectedDate);
     }
 
-    public void changeActivity(View view) {
-            Intent intent = new Intent(GetInfo.this, SalaryInfo.class);
-            startActivity(intent);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void changeActivity(View view) throws ParseException, IOException {
+        WorkInfo workInfo = new WorkInfo(context);
+        String dateString = date.getText().toString();
+        System.out.println("#############################"+ dateString);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDate d = LocalDate.parse(dateString, formatter);
+        LocalTime start = LocalTime.parse(start_Time.getText().toString(),formatter1);
+        LocalTime end = LocalTime.parse(end_Time.getText().toString(),formatter1);
+
+        workInfo.setDate(d);
+        workInfo.setStartTime(start);
+        workInfo.setEndTime(end);
+        System.out.println(d);
+        System.out.println(start);
+        System.out.println(end);
+        workInfo.writeList();
+        Intent intent = new Intent(GetInfo.this, SalaryInfo.class);
+        startActivity(intent);
     }
 }
 
