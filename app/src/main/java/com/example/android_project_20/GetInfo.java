@@ -110,23 +110,42 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
     public void changeActivity(View view) throws ParseException, IOException {
         WorkInfo workInfo = new WorkInfo(context);
         String dateString = date.getText().toString();
-        System.out.println("#############################"+ dateString);
+        //System.out.println("#############################"+ dateString);
+        if (date.getText().toString().equals("")){
+            date_hint.setText("Anna päivä");
+        }
+        else{
+            if(start_Time.getText().toString().equals("")){
+                start_hint.setText("Anna aloitusaika");
+                date_hint.setText("");
+            }
+            else{
+                if(end_Time.getText().toString().equals("")){
+                    end_hint.setText("Anna lopetusaika");
+                    start_hint.setText("");
+                }
+                else{
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+                    DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH:mm");
+                    LocalDate d = LocalDate.parse(dateString, formatter);
+                    LocalTime start = LocalTime.parse(start_Time.getText().toString(),formatter1);
+                    LocalTime end = LocalTime.parse(end_Time.getText().toString(),formatter1);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH:mm");
-        LocalDate d = LocalDate.parse(dateString, formatter);
-        LocalTime start = LocalTime.parse(start_Time.getText().toString(),formatter1);
-        LocalTime end = LocalTime.parse(end_Time.getText().toString(),formatter1);
+                    workInfo.setDate(d);
+                    workInfo.setStartTime(start);
+                    workInfo.setEndTime(end);
+                    //System.out.println(d);
+                    //System.out.println(start);
+                    //System.out.println(end);
+                    workInfo.writeList();
 
-        workInfo.setDate(d);
-        workInfo.setStartTime(start);
-        workInfo.setEndTime(end);
-        System.out.println(d);
-        System.out.println(start);
-        System.out.println(end);
-        workInfo.writeList();
-        Intent intent = new Intent(GetInfo.this, SalaryInfo.class);
-        startActivity(intent);
+
+                    Intent intent = new Intent(GetInfo.this, SalaryInfo.class);
+                    startActivity(intent);
+                }
+            }
+        }
+
     }
 }
 

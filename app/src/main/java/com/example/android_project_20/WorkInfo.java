@@ -1,6 +1,7 @@
 package com.example.android_project_20;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -11,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -22,6 +24,8 @@ public class WorkInfo {
     LocalTime startTime;
     LocalTime endTime;
     Context context;
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public WorkInfo(Context context) {
         this.context = context;
@@ -67,15 +71,17 @@ public class WorkInfo {
             try {
                 newFile.createNewFile();
                 FileWriter fileWriter = new FileWriter(newFile);
-                fileWriter.write("Day   Hours worked    Salary \n");
+                fileWriter.write("Day       Hours worked     Salary \n");
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("VITTUSAATANAAAAAAAAAAA");
             }
         }
+        SharedPreferences preferences = context.getSharedPreferences("Salary", Context.MODE_PRIVATE);
+        String salary = preferences.getString("Salary", "");
+        float salary_int = Float.parseFloat(salary);
             FileWriter fileWriter = new FileWriter(newFile, true);
-            fileWriter.write(date + "   " + minutes / 60 + "  " + "palkka tähän \n");
+            fileWriter.write(date + "        " + df.format(minutes / 60) + "         " + df.format(salary_int*(minutes/60)) + "\n");
             fileWriter.close();
     }
 

@@ -9,6 +9,9 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
@@ -26,10 +29,22 @@ public class SalaryInfo extends AppCompatActivity {
         context = this;
 
             ArrayList<String> data = new ArrayList();
-            data.add("eka                maito");
-            data.add("toka               piimä");
-            data.add("kolmas             leipä");
-            listview.setAdapter(new ArrayAdapter<String>(context, R.layout.list_detail, data));
+
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader((this.getFilesDir()) + "/Salary_list.txt"));
+            String line = reader.readLine();
+            while(line != null){
+                data.add(line);
+                System.out.println(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        listview.setAdapter(new ArrayAdapter<String>(context, R.layout.list_detail, data));
 
 
     }

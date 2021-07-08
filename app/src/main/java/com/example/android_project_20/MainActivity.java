@@ -29,17 +29,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeActivity(View view) {
         salary = salarytext.getText().toString();
-        /*if (salary.equals("")){
+        if (salary.equals("")){
             hint.setText("Anna palkka");
         }
-        else {*/
+        else {
             SharedPreferences.Editor editor = this.getSharedPreferences("Salary", MODE_PRIVATE).edit();
             editor.putString("Salary", salary);
             editor.apply();
 
             Intent intent = new Intent(MainActivity.this, GetInfo.class);
             startActivity(intent);
-        //}
+        }
     }
 
 }

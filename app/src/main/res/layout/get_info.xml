@@ -60,7 +60,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.746"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePicker2"
         app:layout_constraintVertical_bias="0.0" />
@@ -93,47 +93,39 @@
         app:layout_constraintVertical_bias="0.939" />
 
     <TextView
-        android:id="@+id/finalWork"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
-
-    <TextView
         android:id="@+id/start_time_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePicker"
         app:layout_constraintVertical_bias="0.24" />
 
     <TextView
         android:id="@+id/end_time_hint"
-        android:layout_width="71dp"
-        android:layout_height="29dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toEndOf="@+id/start_time_hint"
         app:layout_constraintTop_toTopOf="@+id/end_time2"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.178" />
 
     <TextView
         android:id="@+id/date_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FF0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btPickDate"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
