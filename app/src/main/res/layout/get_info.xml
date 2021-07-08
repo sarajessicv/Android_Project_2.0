@@ -67,30 +67,41 @@
 
     <Button
         android:id="@+id/btPickDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="51dp"
         android:layout_below="@+id/workDate"
-        android:layout_centerInParent="true"
-        android:text="Pick Date"
+        android:lineSpacingExtra="8sp"
+        android:shadowColor="#00FFFFFF"
+        app:backgroundTint="#00FFFFFF"
+        app:backgroundTintMode="multiply"
+        app:icon="@android:drawable/ic_menu_month"
+        app:iconTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.07"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
         android:id="@+id/button_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="68dp"
+        android:layout_height="41dp"
+        android:background="#0000FF0A"
         android:onClick="changeActivity"
-        android:text="Button"
+        android:shadowColor="#00FF0A"
+        app:backgroundTint="#00FF0A"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="#00F40A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.939"
+        app:rippleColor="#00FF0A"
+        app:strokeColor="#00FF0A" />
 
     <TextView
         android:id="@+id/start_time_hint"
@@ -127,5 +138,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btPickDate"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lisää tiedot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_time_hint"
+        app:layout_constraintVertical_bias="0.721" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="valitse päivä"
+        app:layout_constraintBottom_toTopOf="@+id/timePicker2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPickDate"
+        app:layout_constraintVertical_bias="0.114" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

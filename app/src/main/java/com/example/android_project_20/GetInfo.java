@@ -123,6 +123,7 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
                 if(end_Time.getText().toString().equals("")){
                     end_hint.setText("Anna lopetusaika");
                     start_hint.setText("");
+                    date_hint.setText("");
                 }
                 else{
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
