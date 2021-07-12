@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Android_Project_2.0</string>
+
+    <!-- for MainAcitivity -->
+    <string name="tervetuloa">Tervetuloa!
+    Tällä sovelluksella voit laskea tulosi</string>
+    <string name="ohje">Syötä ensin tuntipalkkasi, jonka jälkeen pääset seuraavalle sivulle syöttämään haluamasi päivämäärän, sekä mistä mihin olet työskennellyt</string>
+    <string name="tuntipalkka">Syötä tuntipalkkasi desimaalilukuna (xx.yy)</string>
+    <string name="yksikkö">€/tunti</string>
+    <string name="vihje_palkka">Anna palkka</string>
+    <string name="tallenna">Tallenna tiedot</string>
+
+    <!-- for getInfo -->
+    <string name="valitse_pv">Valitse päivä, jona työskentelit</string>
+    <string name="valitse_aloitus">Valitse työvuorosi aloitusaika</string>
+    <string name="valitse_lopetus">Valitse työvuorosi lopetusaika</string>
+    <string name="tallenna2">Lisää data</string>
+    <string name="hint_päivä">Anna päivä</string>
+    <string name="hint_aloitus">Anna aloitusaika</string>
+    <string name="hint_lopetus">Anna lopetusaika</string>
+
 </resources>

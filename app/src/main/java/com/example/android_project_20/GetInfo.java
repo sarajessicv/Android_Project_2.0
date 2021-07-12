@@ -15,14 +15,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -52,12 +47,12 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
         context = getApplicationContext();
 
         is24HView =  true;
-        date = (TextView) findViewById(R.id.workDate);
-        btPickDate = (Button) findViewById(R.id.btPickDate);
-        next = (Button) findViewById(R.id.button_next);
-        start_hint = (TextView) findViewById(R.id.start_time_hint);
-        end_hint = (TextView) findViewById(R.id.end_time_hint);
-        date_hint = (TextView) findViewById(R.id.date_hint);
+        date = findViewById(R.id.workDate);
+        btPickDate = findViewById(R.id.btPickDate);
+        next = findViewById(R.id.button_next);
+        start_hint = findViewById(R.id.start_time_hint);
+        end_hint = findViewById(R.id.end_time_hint);
+        date_hint = findViewById(R.id.date_hint);
 
 
         btPickDate.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +64,10 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
             }
         });
 
-        this.start_Time = (TextView) this.findViewById(R.id.start_time);
-        this.timePicker = (TimePicker) this.findViewById(R.id.timePicker);
-        this.end_Time= (TextView) this.findViewById(R.id.end_time2);
-        this.timePicker2 = (TimePicker) this.findViewById(R.id.timePicker2);
+        this.start_Time = this.findViewById(R.id.start_time);
+        this.timePicker = this.findViewById(R.id.timePicker);
+        this.end_Time = this.findViewById(R.id.end_time2);
+        this.timePicker2 = this.findViewById(R.id.timePicker2);
 
         this.timePicker.setIs24HourView(this.is24HView);
         this.timePicker2.setIs24HourView(this.is24HView);
@@ -112,16 +107,16 @@ public class GetInfo extends AppCompatActivity implements DatePickerDialog.OnDat
         String dateString = date.getText().toString();
         //System.out.println("#############################"+ dateString);
         if (date.getText().toString().equals("")){
-            date_hint.setText("Anna päivä");
+            date_hint.setText(getResources().getString(R.string.hint_päivä));
         }
         else{
             if(start_Time.getText().toString().equals("")){
-                start_hint.setText("Anna aloitusaika");
+                start_hint.setText(getResources().getString(R.string.hint_aloitus));
                 date_hint.setText("");
             }
             else{
                 if(end_Time.getText().toString().equals("")){
-                    end_hint.setText("Anna lopetusaika");
+                    end_hint.setText(getResources().getString(R.string.hint_lopetus));
                     start_hint.setText("");
                     date_hint.setText("");
                 }

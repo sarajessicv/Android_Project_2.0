@@ -7,11 +7,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,24 +28,12 @@ public class WorkInfo {
         this.context = context;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
     }
 
     public void setEndTime(LocalTime endTime) {
@@ -71,7 +56,7 @@ public class WorkInfo {
             try {
                 newFile.createNewFile();
                 FileWriter fileWriter = new FileWriter(newFile);
-                fileWriter.write("Day       Hours worked     Salary \n");
+                fileWriter.write("Päivä       Työtunnit     Palkka \n");
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();

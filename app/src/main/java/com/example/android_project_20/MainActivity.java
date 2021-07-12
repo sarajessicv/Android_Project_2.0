@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,15 +21,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        salarytext = (EditText) findViewById(R.id.salarytext);
-        hint = (TextView) findViewById(R.id.hintText);
+        salarytext =  findViewById(R.id.salarytext);
+        hint =  findViewById(R.id.hintText);
 
     }
 
     public void changeActivity(View view) {
         salary = salarytext.getText().toString();
         if (salary.equals("")){
-            hint.setText("Anna palkka");
+            hint.setText(getResources().getString(R.string.vihje_palkka));
         }
         else {
             SharedPreferences.Editor editor = this.getSharedPreferences("Salary", MODE_PRIVATE).edit();
